@@ -15,16 +15,19 @@ class Setup:
 
     def __init__(self):
         self.app = web.Application()
-        self.templates = '{}/templates'.format(Path(__file__).parent)
+        self.templates = '{}/../templates'.format(Path(__file__).parent)
+        print(self.templates)
         aiohttp_jinja2.setup(app=self.app, loader=jinja2.FileSystemLoader([self.templates]))
 
-        self.app.router.add_route('GET', '/', Wrapper.home)
-        self.app.router.add_route('GET', '/zero_distance', Wrapper.zero_distance_page)
-        self.app.router.add_route('GET', '/zero_distance_resp/{string}', Wrapper.zero_distance_response)
-        self.app.router.add_route('GET', '/roman', Wrapper.romans_page)
-        self.app.router.add_route('GET', '/roman_resp/{number}', Wrapper.romans_response)
-        self.app.router.add_route('GET', '/gen_pwd', Wrapper.gen_pwd_page)
-        self.app.router.add_route('GET', '/gen_pwd_resp', Wrapper.gen_pwd_response)
+        self.app.add_routes([web.get('/', Wrapper.home),
+                             web.get('/zero_distance', Wrapper.zero_distance_page),
+                             web.get('/zero_distance_resp/{string}', Wrapper.zero_distance_response),
+                             web.get('/roman', Wrapper.romans_page),
+                             web.get('/roman_resp/{number}', Wrapper.romans_response),
+                             web.get('/gen_pwd', Wrapper.gen_pwd_page),
+                             web.get('/gen_pwd_resp', Wrapper.gen_pwd_response),
+                             web.get('/val_cpf', Wrapper.validate_cpf_page),
+                             web.get('/val_cpf_resp/{cpf}', Wrapper.validate_cpf_response)])
 
 
 class Wrapper:
@@ -81,7 +84,13 @@ class Wrapper:
                 "sha_256": sha_hash}
 
     @classmethod
-    @aiohttp_jinja2.template(template_name='')
-    async def validate_cpf(cls, request):
+    @aiohttp_jinja2.template(template_name='val_cpf.html')
+    async def validate_cpf_page(cls, request):
+        return {'app': request.app}
+
+    @classmethod
+    @aiohttp_jinja2.template(template_name='val_cpf_response.html')
+    async def validate_cpf_response(cls, request):
         cpf = request.match_info.get('cpf')
-        return web.Response(text=str(Validator.validate(input_string=cpf)))
+        return {'app': request.app,
+                'result': Validator.validate(input_string=cpf)}

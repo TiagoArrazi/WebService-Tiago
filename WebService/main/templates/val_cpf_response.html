@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h4>Validator</h4>
+
+    <form method="post">
+        <input type="text" placeholder="000.000.000-00" id="validate-input" onkeyup="isEnabled()">
+        <button type="button" id="btn-submit-validate" onclick="Validate()" >Validate</button>
+    </form>
+    <p>{{result}}</p>
+
+    <script type="text/javascript">
+            var input = document.getElementById('validate-input');
+            var button = document.getElementById('btn-submit-validate');
+
+            window.onload = function() {
+                button.setAttribute('disabled', false);
+            }
+
+            function Validate() {
+                cpf = input.value;
+                window.location = "http://localhost:8080/val_cpf_resp/" + cpf;
+            }
+
+            function isEnabled() {
+                if(input.value==="") {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+        }
+
+    </script>
+
+{% endblock %}
