@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h4>ZERO DISTANCES</h4>
+
+    <form method="post">
+        <input type="text" placeholder="Input string" id="zero-input" onkeyup="isEnabled()">
+        <button type="button" id="btn-submit-zero" onclick="ZeroDist()" >Get 0 Distance</button>
+    </form>
+
+    <script type="text/javascript">
+            var input = document.getElementById('zero-input');
+            var button = document.getElementById('btn-submit-zero');
+
+            window.onload = function() {
+                button.setAttribute('disabled', false);
+            }
+
+            function ZeroDist() {
+                var zeroes = input.value;
+                window.location = "http://localhost:8080/zero_distance_resp/" + zeroes;
+            }
+
+            function isEnabled() {
+                if(input.value==="") {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            }
+    </script>
+
+{% endblock %}
+

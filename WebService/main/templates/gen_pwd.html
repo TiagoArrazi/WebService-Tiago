@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h4>PASSWORD GENERATOR</h4>
+
+    <form method="post">
+        <button type="button" id="btn-gen-pwd" onclick="GenPwd()" >Generate Password</button>
+    </form>
+
+    <script type="text/javascript">
+            var input = document.getElementById('zero-input');
+            var button = document.getElementById('btn-submit-zero');
+
+            function GenPwd() {
+                window.location = "http://localhost:8080/gen_pwd_resp";
+            }
+
+
+    </script>
+
+{% endblock %}

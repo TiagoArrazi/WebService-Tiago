@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h4>ROMAN CONVERTER</h4>
+
+    <form method="post">
+        <input type="text" placeholder="Input string" id="roman-input" onkeyup="isEnabled()">
+        <button type="button" id="btn-submit-roman" onclick="Roman()" >Convert to Roman</button>
+    </form>
+
+    <script type="text/javascript">
+            var input = document.getElementById('roman-input');
+            var button = document.getElementById('btn-submit-roman');
+
+            window.onload = function() {
+                button.setAttribute('disabled', false);
+            }
+
+            function Roman() {
+                var romans = input.value;
+                window.location = "http://localhost:8080/roman_resp/" + romans;
+            }
+
+            function isEnabled() {
+                if(input.value==="") {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            }
+    </script>
+
+{% endblock %}
