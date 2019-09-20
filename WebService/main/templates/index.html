@@ -5,6 +5,9 @@
 
             body {
                 background-color: gray;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
 
             ul {
@@ -55,14 +58,33 @@
                 top: -30px;
             }
 
+            #main-div {
+                overflow-x: hidden;
+                overflow-y: hidden
+            }
+
+            button {
+                background-color: #555555;
+                color: white;
+                border-radius: 12px;
+            }
+
+            button:hover {
+                background-color: #111;
+                color: white;
+            }
+            .home{
+            background: url("./home.svg")
+            }
         </style>
 
     </head>
     <body>
+    <div id="main-div">
         <nav>
             <div>
                 <ul>
-                    <li><a href="/">HOME</a></li>
+                    <li><a href="/" class="home">HOME</a></li>
                     <li><a href="/zero_distance">ZERO DISTANCE</a></li>
                     <li><a href="/roman">ROMAN CONVERTER</a></li>
                     <li><a href="/gen_pwd">PASSWORD GENERATOR</a></li>
@@ -81,6 +103,7 @@
             {% endblock %}
 
         </div>
+    </div>
 
     </body>
 
