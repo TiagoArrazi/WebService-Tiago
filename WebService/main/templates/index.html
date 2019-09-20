@@ -1,23 +1,83 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+
+            body {
+                background-color: gray;
+            }
+
+            ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #333;
+            }
+
+            li {
+              float: left;
+            }
+
+            li a {
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+            }
+
+            li a:hover {
+              background-color: #111;
+            }
+
+            h2 {
+                color: white;
+            }
+
+            h4 {
+                color: white;
+            }
+
+            #title-div {
+                position: relative;
+                left: 1000px;
+                top: -60px;
+            }
+
+            #jinja2-div {
+                position: relative;
+                left: 10px;
+                top: -30px;
+            }
+
+        </style>
 
     </head>
     <body>
         <nav>
             <div>
-                <a href="/">HOME</a>
-                <a href="/zero_distance">Zero Distance</a>
-                <a href="/roman">Roman Converter</a>
-                <a href="/gen_pwd">Password Generator</a>
-                <a href="/val_cpf">Validate CPF</a>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/zero_distance">ZERO DISTANCE</a></li>
+                    <li><a href="/roman">ROMAN CONVERTER</a></li>
+                    <li><a href="/gen_pwd">PASSWORD GENERATOR</a></li>
+                    <li><a href="/val_cpf">VALIDATE CPF</a></li>
+                </ul>
             </div>
         </nav>
-        <h2>AWS (Arrazi Web Services)</h2>
+        <div id="title-div">
+            <h2>AWS (Arrazi Web Services)</h2>
+        </div>
 
-        {% block content %}
+        <div id="jinja2-div">
 
-        {% endblock %}
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
     </body>
 
 </html>
